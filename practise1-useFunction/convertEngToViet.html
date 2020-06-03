@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert English to Vietnam</title>
+</head>
+<body>
+    
+<input id="eng" type="text">
+<button id = "convert" onclick="convertLanguage()">Convert English to Vietnam</button>
+<input id="viet" type="text">
+
+<script>
+    let arrEnglish = ['I', 'like', 'technology'];
+    let arrVietnam = ['tôi', 'yêu', 'công nghệ'];
+    let getValue = document.getElementById('eng');
+    let printValue = document.getElementById('viet');
+
+    function convertLanguage() {
+        let length = arrEnglish.length
+        let flag = false;
+
+        for (let i = 0; i < length; i++) {
+            if(getValue.value == arrEnglish[i]) {
+                printValue.value = arrVietnam[i];
+                flag = true;
+            }
+            //  else {
+            //     printValue.value = 'Chưa cập nhật từ này!';
+            // }
+        }
+
+        if(!flag) {
+            printValue.value = 'Bạn đánh sai từ hoặc chúng tôi chưa update từ này';
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

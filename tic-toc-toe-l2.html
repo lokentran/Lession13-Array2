@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table, tr, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+
+        }
+        td {
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            font-size: 40px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <input type="text" id = "row" value="10">
+    <input type="text" id = "col" value="10">
+    <button onclick="createTable()" >Generate Table</button>
+    <div id="board"></div>
+
+<script>
+    "use strict";
+    let x =
+
+    function createTable() {
+        let row = +document.getElementById('row').value;
+        let col = +document.getElementById('col').value;
+      
+        let table = "<table>";
+
+        for (let i = 0; i < row; i++) {
+            table += "<tr>";
+            for (let j = 0; j < col; j++) {
+               table += `<td id="cell-${i}-${j}" onclick="fillCell(${i}, ${j})" ></td>`;
+                
+            }
+            table += "</tr>";
+        }
+        table += "</table>";
+
+        document.getElementById('board').innerHTML = table;
+    }
+
+  
+    let turn = 1;
+    function fillCell(x,y) {
+        let cell = document.getElementById(`cell-${x}-${y}`);
+        
+        if(cell.innerHTML == '') {
+            if(turn == 1) {
+                cell.innerHTML = "x";
+                turn = 2;
+            } else if(turn == 2) {
+                cell.innerHTML = "o";
+                turn = 1;
+            }
+        }
+        checkWin(x,y);
+    }
+
+    function checkWin(x,y) {
+        checkHorizontal(x,y);
+        checkVertical(x,y);
+        checkCheo13(x,y);
+        checkCheo24(x,y);
+    }
+    
+    function getCellValue(x,y) {
+        let cell = document.getElementById(`cell-${x}-${y}`).innerText;
+        return cell;
+    }
+
+    function checkHorizontal(x,y) {
+        let count = 1;
+        let i = 1;
+        while(getCellValue(x,y) == getCellValue(x,y+i) ) {
+            i++;
+            count++;           
+        } 
+        let j = 1;
+        while(getCellValue(x,y) == getCellValue(x, y-j) ) {
+            j++;
+            count++;
+        } 
+
+        gameOver(count); 
+    }
+
+    function checkVertical(x,y) {
+        let count = 1;
+        let i = 1;
+        while(getCellValue(x,y) == getCellValue(x+i,y) ) {
+            i++;
+            count++;           
+        } 
+        let j = 1;
+        while(getCellValue(x,y) == getCellValue(x-j, y) ) {
+            j++;
+            count++;
+        } 
+
+        gameOver(count); 
+    }
+    function checkCheo13(x,y) {
+        let count = 1;
+        let i = 1;
+        while(getCellValue(x,y) == getCellValue(x+i,y+i) ) {
+            i++;
+            count++;           
+        } 
+        let j = 1;
+        while(getCellValue(x,y) == getCellValue(x-j,y-j) ) {
+            j++;
+            count++;
+        } 
+
+        gameOver(count); 
+    }
+    function checkCheo24(x,y) {
+        let count = 1;
+        let i = 1;
+        while(getCellValue(x,y) == getCellValue(x-i,y+i) ) {
+            i++;
+            count++;           
+        } 
+        let j = 1;
+        while(getCellValue(x,y) == getCellValue(x+j, y-j) ) {
+            j++;
+            count++;
+        } 
+
+        gameOver(count); 
+    }
+
+
+
+    function gameOver(count) {
+        if(count == 5) {
+            alert("You are winner!");
+            document.getElementById('board').innerHTML = "";
+        }
+    }
+
+
+
+</script>
+
+
+</body>
+</html>

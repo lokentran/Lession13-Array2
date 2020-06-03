@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic tac toe</title>
+
+    <style>
+        table, tr, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+
+        }
+        td {
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            font-size: 40px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <input id="row" type="text" value="">
+    <input id="col" type="text" value="">
+    <button onclick="createBoard()">Generate</button>
+    <div id="table"></div>
+
+<script>
+    "use strict";
+
+    let turn = 1;
+    const TURN_X = 1;
+    const TURN_O = 2;
+    const VALUE_X ='X';
+    const VALUE_O ='O';
+    let board = document.getElementById('table');
+
+    function createBoard() {
+        let row = +document.getElementById('row').value;
+        let col = +document.getElementById('col').value;
+        let createTable = "<table>";
+        for (let i = 0; i < col; i++) {
+        createTable += "<tr>";
+        for (let j = 0; j < col; j++) {
+            createTable += `<td id="cell-${i}-${j}" onclick="fillCell(${i}, ${j})"></td>`; 
+        }
+        createTable += "</tr>";
+        }
+        board.innerHTML = createTable;
+    }
+
+    function reset() {
+        board.innerHTML = "";
+    }
+
+    function fillCell(x,y) {
+        let cell = document.getElementById(`cell-${x}-${y}`);
+        if(cell.innerHTML == '') {
+            if(turn == TURN_X) {
+                cell.innerHTML = VALUE_X;
+                turn = TURN_O;
+            } else {
+                cell.innerHTML = VALUE_O;
+                turn = TURN_X;
+            }          
+        }
+
+        checkWin(x,y);
+    }
+
+    function checkWin(x,y) {
+        checkHorizon(x,y);
+        checkVertical(x,y);
+        checkDiagonal13(x,y);
+        checkDiagonal24(x,y);
+    }
+
+    function gameOver(count) {
+        if(count == 5) {
+            alert("You are winner!");
+            reset();
+        }
+ 
+    }
+
+    function getCellValue(x,y) {
+        let cellValue = document.getElementById(`cell-${x}-${y}`).innerText;
+        return cellValue;
+    }
+
+    function checkHorizon(x,y) {
+        let count = 1;
+        let i = 1;
+        while(getCellValue(x,y) == getCellValue(x,y+i)) {
+            count++;
+            i++;
+        }
+        let j = 1;
+        while(getCellValue(x,y) == getCellValue(x,y-j)) {
+            count++;
+            j++;
+        }
+        gameOver(count);
+    }
+
+    function checkVertical(x,y) {
+        let count = 1;
+        let i = 1;
+        while(getCellValue(x,y) == getCellValue(x+i,y)) {
+            count++;
+            i++;
+        }
+        let j = 1;
+        while(getCellValue(x,y) == getCellValue(x-j,y)) {
+            count++;
+            j++;
+        }
+        gameOver(count);
+    }
+
+    function checkDiagonal13(x,y) {
+        let count = 1;
+        let i = 1;
+        while(getCellValue(x,y) == getCellValue(x+i,y+i)) {
+            count++;
+            i++;
+        }
+        let j = 1;
+        while(getCellValue(x,y) == getCellValue(x-j,y-j)) {
+            count++;
+            j++;
+        }
+        gameOver(count);
+    }
+
+    function checkDiagonal24(x,y) {
+        let count = 1;
+        let i = 1;
+        while(getCellValue(x,y) == getCellValue(x-i,y+i)) {
+            count++;
+            i++;
+        }
+        let j = 1;
+        while(getCellValue(x,y) == getCellValue(x+j,y-j)) {
+            count++;
+            j++;
+        }
+        gameOver(count);
+    }
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
