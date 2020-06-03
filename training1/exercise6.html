@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+<script>
+let myArr = [];
+let lengthArr = +prompt("Nhập độ dài của mảng");
+for (let i = 0; i < lengthArr; i++) {
+    myArr[i] = +prompt(`nhập giá trị số nguyên cho vị trí ${i}`); 
+    console.log(myArr[i]);
+}
+
+let number = +prompt("nhập 1 giá trị nguyên bất kì");
+    console.log(number);
+
+for (let i = 0; i < lengthArr; i++) {
+  
+   if(number == myArr[i]) {
+        console.log('V is in the array');
+        break;
+   } else {
+       console.log('V is not in the array');
+       break;
+   }
+    
+}
+
+</script>    
+</body>
+</html>

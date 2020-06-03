@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In ra số nguyên lớn nhất và tìm giá trị trung bình của mảng</title>
+</head>
+<body>
+    <button onclick="findMax()">Find Max </button>
+    <div id="arr"></div>
+    <div id="result"></div>
+
+    <script>
+        "user strict"
+        let myArray = [1,4,5,7,56,34,10,2,88, -10];
+        let max = myArray[0];
+        console.log(myArray[7]);
+
+        function findMax() {
+            for (i = 1; i < myArray.length; i++) {
+                if(max < myArray[i]) {
+                    max = myArray[i];
+                }
+                
+            }
+
+            let index;
+
+            for (let i = 0; i < myArray.length; i++) {
+                if(myArray[i] == max) {
+                    index = i;
+                }
+                
+            }
+
+            let average = 0;
+            let sum = 0;
+
+            for (let i = 0; i < myArray.length; i++) {
+                sum += myArray[i];
+            }
+            average = sum / myArray.length;
+
+            document.getElementById('result').innerHTML = `Giá trị lớn nhất trong mảng là ${max} tại vị trí ${index} <br> Giá trị trung bình của mảng là ${average}`;
+        }
+        
+    </script>   
+
+
+</body>
+</html>

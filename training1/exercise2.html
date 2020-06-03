@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1</title>
+</head>
+<body>
+    <button onclick="findMax()">Find Max </button>
+    <div id="arr"></div>
+    <div id="result"></div>
+
+    <script>
+        "user strict"
+        let myArray = [1,4,5,7,56,34,878,2346,88, -12, 23];
+        let max = myArray[0];
+        console.log(myArray[7]);
+
+        function findMax() {
+            for (i = 1; i < myArray.length; i++) {
+                if(max < myArray[i]) {
+                    max = myArray[i];
+                }
+                
+            }
+
+            let index;
+
+            for (let i = 0; i < myArray.length; i++) {
+                if(myArray[i] == max) {
+                    index = i;
+                }
+                
+            }
+            document.getElementById('result').innerHTML = `Giá trị lớn nhất trong mảng là ${max} tại vị trí ${index}`;
+        }
+        
+    </script>
+</body>
+</html>

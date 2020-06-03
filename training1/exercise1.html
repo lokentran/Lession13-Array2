@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1</title>
+</head>
+<body>
+    <button onclick="countPara()">Count </button>
+    <div id="arr"></div>
+    <div id="result"></div>
+
+    <script>
+        let myArray = [1,4,5,7,56,34,878,2346,88, -12, 23];
+        let count = 0;
+        let compare = 10;
+
+        function countPara() {
+            document.getElementById('arr').innerHTML = `Mảng: ${myArray}`;
+            for (let i = 0; i < myArray.length; i++) {
+                if(myArray[i] >= compare) {
+                    count +=1;
+                } 
+            }
+            document.getElementById('result').innerHTML = `Số lượng các phần tử lớn hơn 10 là ${count}`;
+        }
+
+    </script>
+</body>
+</html>

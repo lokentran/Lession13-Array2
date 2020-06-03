@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In ra số nguyên lớn nhất và tìm giá trị trung bình của mảng</title>
+</head>
+<body>
+    <button onclick="sortArr()">Count negative </button>
+    <div id="arr"></div>
+    <div id="result"></div>
+
+    <script>
+        "user strict"
+        let myArray = [-1,4,-5,7,-56,-34,10,2,88, -10];
+
+        let first = 0;
+        let last = myArray.length - 1;
+
+        function sortArr() {
+            document.getElementById('arr').innerHTML = myArray;
+            let count = 0;
+            for (let i = 0; i < myArray.length; i++) {
+                if(myArray[i] <0 ) {
+                    count++;
+                }
+                
+            }
+
+            document.getElementById('result').innerHTML = `Số phần tử nhỏ hơn 0 trong mảng là ${count}`;
+        }
+
+        
+    </script>   
+
+
+</body>
+</html>
